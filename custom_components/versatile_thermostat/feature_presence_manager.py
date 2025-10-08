@@ -115,6 +115,10 @@ class FeaturePresenceManager(BaseFeatureManager):
         """Update the value of the presence sensor and update the VTherm state accordingly
         Return true if a change has been made"""
 
+        if self._vtherm.window_manager.is_window_detected:
+            _LOGGER.debug("%s - Ignoring presence change because window is open", self)
+            return False
+
         _LOGGER.info("%s - Updating presence. New state is %s", self, new_state)
         old_presence_state = self._presence_state
         self._presence_state = (

@@ -246,6 +246,10 @@ class FeatureMotionManager(BaseFeatureManager):
         """Update the value of the motion sensor and update the VTherm state accordingly
         Return true if a change has been made"""
 
+        if self._vtherm.window_manager.is_window_detected:
+            _LOGGER.debug("%s - Ignoring motion state change because window is open", self)
+            return False
+
         _LOGGER.info("%s - Updating motion state. New state is %s", self, new_state)
         old_motion_state = self._motion_state
         if new_state is not None:

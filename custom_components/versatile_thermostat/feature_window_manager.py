@@ -260,7 +260,7 @@ class FeatureWindowManager(BaseFeatureManager):
                 CONF_WINDOW_FROST_TEMP,
                 CONF_WINDOW_ECO_TEMP,
             ]:
-                await self._vtherm.restore_target_temp(force=True)
+                await self._vtherm.restore_preset_mode(force=True)
 
             # default to TURN_OFF
             elif self._window_action in [CONF_WINDOW_TURN_OFF]:
@@ -304,7 +304,7 @@ class FeatureWindowManager(BaseFeatureManager):
                 CONF_WINDOW_FROST_TEMP,
                 CONF_WINDOW_ECO_TEMP,
             ]:
-                self._vtherm.save_target_temp()
+                self._vtherm.save_preset_mode()
 
             if (
                 self._window_action == CONF_WINDOW_FAN_ONLY
